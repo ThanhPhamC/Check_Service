@@ -12,7 +12,7 @@ public class Job {
         List<Service> services= Service.getListService(props);
         LocalDateTime currentDate= LocalDateTime.now();
         sendDate.plusHours(Integer.parseInt(props.getProperty(MAIL_TIME_RESEND)));
-        if (currentDate.isAfter(sendDate)&&services!=null){
+        if (currentDate.isAfter(sendDate)&&services.size()!=0){
             sendDate=currentDate;
             MailProvider.sendEmail(MAIL_SUBJECT,services,props);
         }
